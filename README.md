@@ -11,4 +11,4 @@ From the command line :
 
 2) Run < pip install -r requirements.txt
 
-3) 
+3) Run ./start.sh

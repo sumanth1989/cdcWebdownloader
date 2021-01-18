@@ -11,6 +11,7 @@ def main () :
 	
 	Webpath = 'https://covid.cdc.gov/covid-data-tracker/#vaccinations'
 	cwd = os.getcwd()
+
 	if not os.path.exists(cwd + "/Data"):
 		os.makedirs(cwd + "/Data")
 	browser = getWebpageData(Webpath,cwd)
@@ -39,7 +40,12 @@ def getWebpageData(Webpath,cwd):
                 "directory_upgrade": True
             }
 	chrome_options.add_experimental_option('prefs',preferences)
-	browser = webdriver.Chrome(executable_path= cwd + '/chromedriver', chrome_options=chrome_options)
+	if ((os.name) == 'posix') :
+		driver_path = cwd + '/chromedriver'
+
+	else :
+		driver_path = cwd + '/chromedriver.exe'
+	browser = webdriver.Chrome(executable_path= driver_path, chrome_options=chrome_options)
 	browser.get(Webpath)
 	delay = 6 # seconds
 	try:
